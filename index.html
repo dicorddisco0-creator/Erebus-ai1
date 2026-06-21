@@ -1,0 +1,14 @@
+<!doctype html>
+<html><body style="background:#03020a;color:#c4b5fd;font-family:monospace">
+<h1>✦ EREBUS</h1>
+<div id="chat"></div>
+<input id="m"><button onclick="send()">SEND</button>
+<script>
+async function send(){
+let m=document.getElementById('m'), c=document.getElementById('chat');
+c.innerHTML += '<p>YOU: '+m.value+'</p>';
+let r=await fetch('/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:m.value})});
+let d=await r.json(); c.innerHTML += '<p>EREBUS: '+d.reply+'</p>'; m.value='';
+}
+</script>
+</body></html>
